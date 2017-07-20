@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Inventory App</string>
 
+    <!-- ProductEditor menu save -->
+    <string name="product_editor_menu_save">Save</string>
+
+    <!-- ProductEditor menu delete -->
+    <string name="product_editor_menu_delete">Delete</string>
+
     <!-- EmptyListImage credits -->
     <string name="empty_list_image_credit">Created by Narukistudio - Freepik.com</string>
 

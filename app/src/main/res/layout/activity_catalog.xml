@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/CatalogLayoutContainer"
     tools:context="pl.bartekpawlowski.inventoryapp.CatalogActivity">
@@ -8,6 +7,7 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         style="@style/Fab"
+        android:onClick="onFabClick"
         android:src="@drawable/ic_add_white_18dp"
         />
 
@@ -21,8 +21,8 @@
 
         <ImageView
             style="@style/EmptyListImage"
-            android:src="@drawable/warehouse"
             android:contentDescription="@string/empty_list_image_description"
+            android:src="@drawable/warehouse"
             />
 
         <TextView

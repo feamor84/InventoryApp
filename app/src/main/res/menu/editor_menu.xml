@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".EditorActivity">
+
+    <item
+        android:id="@+id/save_product"
+        android:icon="@drawable/ic_done_white_24dp"
+        android:title="@string/product_editor_menu_save"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/delete_product"
+        android:icon="@drawable/ic_delete_white_24dp"
+        android:title="@string/product_editor_menu_delete"
+        app:showAsAction="ifRoom" />
+
+</menu>
