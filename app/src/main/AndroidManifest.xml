@@ -23,6 +23,11 @@
         <activity
             android:name=".EditorActivity"
             android:parentActivityName=".CatalogActivity" />
+
+        <provider
+            android:authorities="pl.bartekpawlowski.inventoryapp"
+            android:name=".data.ProductProvider"
+            android:exported="false" />
     </application>
 
 </manifest>
