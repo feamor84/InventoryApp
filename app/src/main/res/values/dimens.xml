@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 0dp for LinearLayout -->
+    <dimen name="_0dp">0dp</dimen>
+
+    <!-- FAB margin -->
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- EmptyList credits text size -->
+    <dimen name="credits_text_size">8sp</dimen>
+
+    <!-- EmptyList credits margin -->
+    <dimen name="credits_text_margin">16dp</dimen>
+
+    <!-- EmptyList text size -->
+    <dimen name="empty_list_text_size">12sp</dimen>
+
+    <!-- EmptyList text padding -->
+    <dimen name="empty_list_text_padding">16dp</dimen>
+
+    <!-- ListItem container padding -->
+    <dimen name="list_item_container_padding">16dp</dimen>
+
+    <!-- ListItem name text size -->
+    <dimen name="list_item_name_text_size">18sp</dimen>
+
+    <!-- ListItem price text size -->
+    <dimen name="list_item_price_text_size">14sp</dimen>
+
+    <!-- ListItem space between name and price -->
+    <dimen name="list_item_space">8dp</dimen>
+
+    <!-- ProductEditor container padding -->
+    <dimen name="product_editor_container_padding">16dp</dimen>
+
+    <!-- ProductEditor items margin -->
+    <dimen name="product_editor_item_margin">8dp</dimen>
+
+    <!-- ProductEditor supplier heading margin top -->
+    <dimen name="product_editor_supplier_heading_margin_top">16dp</dimen>
+
+    <!-- ProductEditor supplier heading margin bottom -->
+    <dimen name="product_editor_supplier_heading_margin_bottom">8dp</dimen>
+</resources>

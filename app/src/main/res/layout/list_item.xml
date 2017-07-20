@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ListItemContainer">
+
+    <LinearLayout
+        style="@style/ListItemNameAndPriceContainer">
+
+        <TextView
+            style="@style/ListItemNameAndPrice.Name"
+            tools:text="Nazwa produktu"/>
+
+        <TextView
+            style="@style/ListItemNameAndPrice.Price"
+            tools:text="6.50 zł"/>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/ListItemQtyAndSale.Quantity"
+        tools:text="6 pcs"
+        />
+
+    <Button
+        style="@style/ListItemQtyAndSale.Sale"
+        android:text="@string/sale_button"/>
+
+</LinearLayout>

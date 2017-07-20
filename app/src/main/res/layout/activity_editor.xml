@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ProductEditorScrollView"
+    tools:context="pl.bartekpawlowski.inventoryapp.EditorActivity">
+<LinearLayout
+    style="@style/ProductEditorContainer">
+
+    <LinearLayout
+        style="@style/ProductEditorItemContainer">
+
+        <TextView
+            style="@style/ProductEditorItemTextView"
+            android:text="@string/product_editor_name"/>
+
+        <EditText
+            android:inputType="text"
+            style="@style/ProductEditorItemEditText"
+            android:hint="@string/product_editor_name_hint"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ProductEditorItemContainer">
+
+        <TextView
+            style="@style/ProductEditorItemTextView"
+            android:text="@string/product_editor_price"/>
+
+        <EditText
+            android:inputType="number"
+            style="@style/ProductEditorItemEditText"
+            android:hint="@string/product_editor_price_hint"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ProductEditorItemContainer">
+
+        <TextView
+            style="@style/ProductEditorItemTextView"
+            android:text="@string/product_editor_in_stock"/>
+
+        <EditText
+            android:inputType="number"
+            style="@style/ProductEditorItemEditText"
+            android:hint="@string/product_editor_in_stock_hint"/>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/ProductEditorHeading"
+        android:text="@string/product_editor_product_supplier"/>
+
+    <LinearLayout
+        style="@style/ProductEditorItemContainer">
+
+        <TextView
+            style="@style/ProductEditorItemTextView"
+            android:text="@string/product_editor_supplier_name"/>
+
+        <EditText
+            android:inputType="text"
+            style="@style/ProductEditorItemEditText"
+            android:hint="@string/product_editor_supplier_name_hint"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ProductEditorItemContainer">
+
+        <TextView
+            style="@style/ProductEditorItemTextView"
+            android:text="@string/product_editor_supplier_email"/>
+
+        <EditText
+            android:inputType="text"
+            style="@style/ProductEditorItemEditText"
+            android:hint="@string/product_editor_supplier_email_hint"/>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/ProductEditorHeading"
+        android:text="@string/product_editor_product_supplier"/>
+
+    <LinearLayout
+        style="@style/ProductEditorQuantityContainer">
+        <Button
+            style="@style/ProductEditorQuantityButton"
+            android:text="@string/product_editor_quantity_decrease"/>
+
+        <TextView
+            style="@style/ProductEditorQuantityText"
+            tools:text="0"/>
+
+        <Button
+            style="@style/ProductEditorQuantityButton"
+            android:text="@string/product_editor_quantity_increase"/>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/ProductEditorHeading"
+        android:text="@string/product_editor_product_supplier"/>
+
+    <Button
+        style="@style/ProductEditorImageButton" />
+
+    <ImageView
+        style="@style/ProductEditorImageHolder" />
+
+</LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Inventory App</string>
+
+    <!-- EmptyListImage credits -->
+    <string name="empty_list_image_credit">Created by Narukistudio - Freepik.com</string>
+
+    <!-- EmptyListImage description -->
+    <string name="empty_list_image_description">Warehouse</string>
+
+    <!-- EmptyListText -->
+    <string name="empty_list_text">No product on the list! \nPlease click button on bottom right to add a new product.</string>
+
+    <!-- List item SALE button -->
+    <string name="sale_button">sale</string>
+
+    <!-- ProductEditor product name -->
+    <string name="product_editor_name">Name</string>
+
+    <!-- ProductEditor product name hint -->
+    <string name="product_editor_name_hint">Product name</string>
+
+    <!-- ProductEditor product price -->
+    <string name="product_editor_price">Price</string>
+
+    <!-- ProductEditor product price hint -->
+    <string name="product_editor_price_hint">Product price</string>
+
+    <!-- ProductEditor product in stock -->
+    <string name="product_editor_in_stock">In stock</string>
+
+    <!-- ProductEditor product in stock hint -->
+    <string name="product_editor_in_stock_hint">Quantity in stock</string>
+
+    <!-- ProductEditor product supplier -->
+    <string name="product_editor_product_supplier">Supplier data</string>
+
+    <!-- ProductEditor supplier name -->
+    <string name="product_editor_supplier_name">Name</string>
+
+    <!-- ProductEditor supplier name hint -->
+    <string name="product_editor_supplier_name_hint">Supplier name</string>
+
+    <!-- ProductEditor supplier e-mail -->
+    <string name="product_editor_supplier_email">E-mail</string>
+
+    <!-- ProductEditor supplier e-mail hint -->
+    <string name="product_editor_supplier_email_hint">Supplier e-mail</string>
+
+    <!-- ProductEditor quantity increase -->
+    <string name="product_editor_quantity_increase">+</string>
+
+    <!-- ProductEditor quantity decrease -->
+    <string name="product_editor_quantity_decrease">-</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CatalogLayoutContainer"
+    tools:context="pl.bartekpawlowski.inventoryapp.CatalogActivity">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Fab"
+        android:src="@drawable/ic_add_white_18dp"
+        />
+
+    <ListView
+        android:id="@+id/catalog_list"
+        style="@style/CatalogLayoutList" />
+
+    <LinearLayout
+        android:id="@+id/empty_list_container"
+        style="@style/EmptyListContainer">
+
+        <ImageView
+            style="@style/EmptyListImage"
+            android:src="@drawable/warehouse"
+            android:contentDescription="@string/empty_list_image_description"
+            />
+
+        <TextView
+            style="@style/EmptyListImageCredits"
+            android:text="@string/empty_list_image_credit"/>
+
+        <TextView
+            style="@style/EmptyListText"
+            android:text="@string/empty_list_text"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

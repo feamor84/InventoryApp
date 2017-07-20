@@ -1,0 +1,190 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--Main container in Catalog layout-->
+    <style name="CatalogLayoutContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="CatalogLayoutList">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!--Elements when List is empty-->
+    <style name="EmptyListContainer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="EmptyListImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="EmptyListImageCredits">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/credits_text_size</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/credits_text_margin</item>
+        <item name="android:color">@color/empty_list_image_credits</item>
+    </style>
+
+    <style name="EmptyListText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/empty_list_text_size</item>
+        <item name="android:paddingLeft">@dimen/empty_list_text_padding</item>
+        <item name="android:paddingRight">@dimen/empty_list_text_padding</item>
+    </style>
+
+    <!--FloatingActionButton-->
+    <style name="Fab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+    </style>
+
+    <!-- ListItem container -->
+    <style name="ListItemContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">@dimen/list_item_container_padding</item>
+    </style>
+
+    <!-- ListItem name & price container -->
+    <style name="ListItemNameAndPriceContainer">
+        <item name="android:layout_width">@dimen/_0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="ListItemNameAndPrice">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/_0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- ListItem name -->
+    <style name="ListItemNameAndPrice.Name">
+        <item name="android:textSize">@dimen/list_item_name_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">@dimen/list_item_space</item>
+    </style>
+
+    <!-- ListItem price -->
+    <style name="ListItemNameAndPrice.Price">
+        <item name="android:textSize">@dimen/list_item_price_text_size</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <!-- ListItem quantity and SALE button -->
+    <style name="ListItemQtyAndSale">
+        <item name="android:layout_width">@dimen/_0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- ListItem quantity -->
+    <style name="ListItemQtyAndSale.Quantity">
+
+    </style>
+
+    <!-- ListItem quantity -->
+    <style name="ListItemQtyAndSale.Sale">
+
+    </style>
+
+    <!-- ProductEditor ScrollView -->
+    <style name="ProductEditorScrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- ProductEditor container -->
+    <style name="ProductEditorContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/product_editor_container_padding</item>
+    </style>
+
+    <!-- ProductEditor items container -->
+    <style name="ProductEditorItemContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/product_editor_item_margin</item>
+    </style>
+
+    <style name="ProductEditorItemTextView">
+        <item name="android:layout_width">@dimen/_0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ProductEditorItemEditText">
+        <item name="android:layout_width">@dimen/_0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <!-- ProductEditor heading -->
+    <style name="ProductEditorHeading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/product_editor_supplier_heading_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/product_editor_supplier_heading_margin_bottom</item>
+    </style>
+
+    <!-- ProductEditor quantity container-->
+    <style name="ProductEditorQuantityContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!-- ProductEditor quantity buttons -->
+    <style name="ProductEditorQuantityButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- ProductEditor quantity text -->
+    <style name="ProductEditorQuantityText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- ProductEditor image add -->
+    <style name="ProductEditorImageButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- ProductEditor image holder -->
+    <style name="ProductEditorImageHolder">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>
