@@ -1,6 +1,7 @@
 package pl.bartekpawlowski.inventoryapp;
 
 import android.app.LoaderManager;
+import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -62,6 +63,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             this.setTitle(R.string.product_editor_edit_mode);
             getLoaderManager().initLoader(LOADER_ID, null, this);
         } else {
+            invalidateOptionsMenu();
             this.setTitle(R.string.product_editor_add_mode);
         }
     }
@@ -69,7 +71,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.editor_menu, menu);
-        MenuItem deleteProductButton = findViewById(R.id.delete_product);
+        MenuItem deleteProductButton = menu.findItem(R.id.delete_product);
 
         if (mItemUri == null) {
             deleteProductButton.setVisible(false);
@@ -81,13 +83,53 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.save_product:
+                if (saveProduct(collectFormData())) {
+                    finish();
+                }
                 break;
             case R.id.delete_product:
+                if (deleteProduct()) {
+                    finish();
+                }
                 break;
             case android.R.id.home:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private ContentValues collectFormData() {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ProductEntry.COLUMN_NAME, mProductName.getText().toString());
+        contentValues.put(ProductEntry.COLUMN_PRICE, mProductPrice.getText().toString());
+        contentValues.put(ProductEntry.COLUMN_QUANTITY, mProductQty.getText().toString());
+        contentValues.put(ProductEntry.COLUMN_SUPPLIER_NAME, mSupplierName.getText().toString());
+        contentValues.put(ProductEntry.COLUMN_SUPPLIER_EMAIL, mSupplierEmail.getText().toString());
+
+        return contentValues;
+    }
+
+    private boolean saveProduct(ContentValues contentValues) {
+
+        if (mItemUri != null) {
+            int rowsNumber = getContentResolver().update(mItemUri, contentValues, null, null);
+            if (rowsNumber != 0) {
+                return true;
+            }
+        } else {
+            Uri uri = getContentResolver().insert(ProductEntry.CONTENT_PATH, contentValues);
+            if (uri != null) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean deleteProduct() {
+        int rowsNumber = getContentResolver().delete(mItemUri, null, null);
+
+        return rowsNumber != 0;
     }
 
     @Override

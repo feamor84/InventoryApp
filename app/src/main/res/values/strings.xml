@@ -75,4 +75,8 @@
 
     <!-- ProductEditor image description -->
     <string name="product_editor_image_desc">Product image</string>
+
+    <!-- TOASTs validation messages -->
+    <!-- ProductCursorAdapter - when user tries to click SELL button when quantity is 0 -->
+    <string name="toast_quantity_is_zero">Cannot sell item. It\'s 0 in stock.</string>
 </resources>

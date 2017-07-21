@@ -20,10 +20,6 @@ public class ProductProvider extends ContentProvider {
 
     // Logging tag
     private final static String LOG_TAG = ProductProvider.class.getSimpleName();
-
-    // Instance of DB helper
-    private ProductDbHelper mDbHelper;
-
     /**
      * Codes for Uri matcher to manage queries from UI
      * <p>
@@ -32,7 +28,6 @@ public class ProductProvider extends ContentProvider {
      */
     private final static int PRODUCTS = 100;
     private final static int PRODUCT_ID = 101;
-
     // Instance of Uri matcher
     private final static UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
@@ -41,6 +36,9 @@ public class ProductProvider extends ContentProvider {
         sUriMatcher.addURI(ProductContract.CONTENT_AUTHORITIES, ProductContract.PRODUCTS_PATH, PRODUCTS);
         sUriMatcher.addURI(ProductContract.CONTENT_AUTHORITIES, ProductContract.PRODUCTS_PATH + "/#", PRODUCT_ID);
     }
+
+    // Instance of DB helper
+    private ProductDbHelper mDbHelper;
 
     @Override
     public boolean onCreate() {
@@ -68,6 +66,8 @@ public class ProductProvider extends ContentProvider {
                 throw new IllegalArgumentException("Wrong Uri in QUERY with: " + uri);
         }
 
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
         return cursor;
     }
 
@@ -77,6 +77,7 @@ public class ProductProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case PRODUCTS:
+                getContext().getContentResolver().notifyChange(uri, null);
                 return insertProduct(uri, contentValues);
             default:
                 throw new IllegalArgumentException("Wrong Uri in INSERT with: " + uri);
@@ -88,7 +89,7 @@ public class ProductProvider extends ContentProvider {
      *
      * @param uri           link to content passed from insert() method
      * @param contentValues values passed to insert() method from UI
-     * @return Uri build from query inserted id and passed Uri
+     * @return Uri          build from query inserted id and passed Uri
      */
     private Uri insertProduct(Uri uri, ContentValues contentValues) {
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
@@ -117,6 +118,8 @@ public class ProductProvider extends ContentProvider {
                 throw new IllegalArgumentException("Wrong Uri in DELETE with: " + uri);
         }
 
+        getContext().getContentResolver().notifyChange(uri, null);
+
         return rowNumbers;
     }
 
@@ -128,16 +131,18 @@ public class ProductProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case PRODUCTS:
-                updateProduct(uri, contentValues, selection, selectionArgs);
+                rowNumber = updateProduct(uri, contentValues, selection, selectionArgs);
                 break;
             case PRODUCT_ID:
                 selection = ProductEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-                updateProduct(uri, contentValues, selection, selectionArgs);
+                rowNumber = updateProduct(uri, contentValues, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Wrong Uri in UPDATE with: " + uri);
         }
+
+        getContext().getContentResolver().notifyChange(uri, null);
 
         return rowNumber;
     }
