@@ -37,8 +37,8 @@
     <!-- ProductEditor product in stock hint -->
     <string name="product_editor_in_stock_hint">Quantity in stock</string>
 
-    <!-- ProductEditor product supplier -->
-    <string name="product_editor_product_supplier">Supplier data</string>
+    <!-- ProductEditor product supplier heading -->
+    <string name="product_editor_product_supplier_heading">Supplier data</string>
 
     <!-- ProductEditor supplier name -->
     <string name="product_editor_supplier_name">Name</string>
@@ -52,9 +52,21 @@
     <!-- ProductEditor supplier e-mail hint -->
     <string name="product_editor_supplier_email_hint">Supplier e-mail</string>
 
+    <!-- ProductEditor change quantity heading -->
+    <string name="product_editor_quantity_change_heading">Change quantity of product in stock</string>
+
     <!-- ProductEditor quantity increase -->
     <string name="product_editor_quantity_increase">+</string>
 
     <!-- ProductEditor quantity decrease -->
     <string name="product_editor_quantity_decrease">-</string>
+
+    <!-- ProductEditor image of product heading -->
+    <string name="product_editor_image_heading">Product image</string>
+
+    <!-- ProductEditor image add button -->
+    <string name="product_editor_image_add_button">Add image</string>
+
+    <!-- ProductEditor image description -->
+    <string name="product_editor_image_desc">Product image</string>
 </resources>

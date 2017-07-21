@@ -7,21 +7,25 @@
         style="@style/ListItemNameAndPriceContainer">
 
         <TextView
+            android:id="@+id/list_product_name"
             style="@style/ListItemNameAndPrice.Name"
             tools:text="Nazwa produktu"/>
 
         <TextView
+            android:id="@+id/list_product_price"
             style="@style/ListItemNameAndPrice.Price"
             tools:text="6.50 zł"/>
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/list_product_qty"
         style="@style/ListItemQtyAndSale.Quantity"
         tools:text="6 pcs"
         />
 
     <Button
+        android:id="@+id/list_product_sale_button"
         style="@style/ListItemQtyAndSale.Sale"
         android:text="@string/sale_button"/>
 

@@ -108,9 +108,9 @@
 
     </style>
 
-    <!-- ListItem quantity -->
+    <!-- ListItem sale button -->
     <style name="ListItemQtyAndSale.Sale">
-
+        <item name="android:focusable">false</item>
     </style>
 
     <!-- ProductEditor ScrollView -->

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ProductEditorScrollView"
     tools:context="pl.bartekpawlowski.inventoryapp.EditorActivity">
@@ -15,9 +14,10 @@
             android:text="@string/product_editor_name"/>
 
         <EditText
-            android:inputType="text"
+            android:id="@+id/editor_name"
             style="@style/ProductEditorItemEditText"
-            android:hint="@string/product_editor_name_hint"/>
+            android:hint="@string/product_editor_name_hint"
+            android:inputType="text" />
 
     </LinearLayout>
 
@@ -29,9 +29,10 @@
             android:text="@string/product_editor_price"/>
 
         <EditText
-            android:inputType="number"
+            android:id="@+id/editor_price"
             style="@style/ProductEditorItemEditText"
-            android:hint="@string/product_editor_price_hint"/>
+            android:hint="@string/product_editor_price_hint"
+            android:inputType="number" />
 
     </LinearLayout>
 
@@ -43,15 +44,16 @@
             android:text="@string/product_editor_in_stock"/>
 
         <EditText
-            android:inputType="number"
+            android:id="@+id/editor_qty"
             style="@style/ProductEditorItemEditText"
-            android:hint="@string/product_editor_in_stock_hint"/>
+            android:hint="@string/product_editor_in_stock_hint"
+            android:inputType="number" />
 
     </LinearLayout>
 
     <TextView
         style="@style/ProductEditorHeading"
-        android:text="@string/product_editor_product_supplier"/>
+        android:text="@string/product_editor_product_supplier_heading" />
 
     <LinearLayout
         style="@style/ProductEditorItemContainer">
@@ -61,9 +63,10 @@
             android:text="@string/product_editor_supplier_name"/>
 
         <EditText
-            android:inputType="text"
+            android:id="@+id/editor_supplier_name"
             style="@style/ProductEditorItemEditText"
-            android:hint="@string/product_editor_supplier_name_hint"/>
+            android:hint="@string/product_editor_supplier_name_hint"
+            android:inputType="text" />
 
     </LinearLayout>
 
@@ -75,27 +78,31 @@
             android:text="@string/product_editor_supplier_email"/>
 
         <EditText
-            android:inputType="text"
+            android:id="@+id/editor_supplier_email"
             style="@style/ProductEditorItemEditText"
-            android:hint="@string/product_editor_supplier_email_hint"/>
+            android:hint="@string/product_editor_supplier_email_hint"
+            android:inputType="textEmailAddress" />
 
     </LinearLayout>
 
     <TextView
         style="@style/ProductEditorHeading"
-        android:text="@string/product_editor_product_supplier"/>
+        android:text="@string/product_editor_quantity_change_heading" />
 
     <LinearLayout
         style="@style/ProductEditorQuantityContainer">
         <Button
+            android:id="@+id/editor_decrease"
             style="@style/ProductEditorQuantityButton"
             android:text="@string/product_editor_quantity_decrease"/>
 
         <TextView
+            android:id="@+id/editor_qty_text_view"
             style="@style/ProductEditorQuantityText"
             tools:text="0"/>
 
         <Button
+            android:id="@+id/editor_increase"
             style="@style/ProductEditorQuantityButton"
             android:text="@string/product_editor_quantity_increase"/>
 
@@ -103,13 +110,17 @@
 
     <TextView
         style="@style/ProductEditorHeading"
-        android:text="@string/product_editor_product_supplier"/>
+        android:text="@string/product_editor_image_heading" />
 
     <Button
-        style="@style/ProductEditorImageButton" />
+        android:id="@+id/editor_add_image"
+        style="@style/ProductEditorImageButton"
+        android:text="@string/product_editor_image_add_button" />
 
     <ImageView
-        style="@style/ProductEditorImageHolder" />
+        android:id="@+id/editor_image_holder"
+        style="@style/ProductEditorImageHolder"
+        android:contentDescription="@string/product_editor_image_desc" />
 
 </LinearLayout>
 
