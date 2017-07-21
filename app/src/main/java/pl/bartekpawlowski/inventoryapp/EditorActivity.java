@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,14 +59,35 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mItemUri = getIntent().getData();
 
         if (mItemUri != null) {
+            this.setTitle(R.string.product_editor_edit_mode);
             getLoaderManager().initLoader(LOADER_ID, null, this);
+        } else {
+            this.setTitle(R.string.product_editor_add_mode);
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.editor_menu, menu);
+        MenuItem deleteProductButton = findViewById(R.id.delete_product);
+
+        if (mItemUri == null) {
+            deleteProductButton.setVisible(false);
+        }
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.save_product:
+                break;
+            case R.id.delete_product:
+                break;
+            case android.R.id.home:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

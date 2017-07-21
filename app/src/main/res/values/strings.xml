@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Inventory App</string>
 
+    <!-- ProductEditor label - add product mode -->
+    <string name="product_editor_add_mode">Add product</string>
+
+    <!-- ProductEditor label - edit product mode -->
+    <string name="product_editor_edit_mode">Edit product</string>
+
     <!-- ProductEditor menu save -->
     <string name="product_editor_menu_save">Save</string>
 
