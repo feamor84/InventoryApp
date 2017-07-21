@@ -79,4 +79,7 @@
     <!-- TOASTs validation messages -->
     <!-- ProductCursorAdapter - when user tries to click SELL button when quantity is 0 -->
     <string name="toast_quantity_is_zero">Cannot sell item. It\'s 0 in stock.</string>
+
+    <!-- EditorActivity - when user tries to click on "-" button, in edit mode, to decrease quantity when it's 0 -->
+    <string name="toast_quantity_is_zero_editor_mode">Quantity in stock cannot be negative. Now it\'s 0.</string>
 </resources>

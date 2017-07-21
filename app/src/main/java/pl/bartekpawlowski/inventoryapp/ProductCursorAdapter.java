@@ -76,12 +76,10 @@ public class ProductCursorAdapter extends CursorAdapter {
         return itemQuantity;
     }
 
-    private boolean decreaseQuantityByOne(Uri uri, Context context, int currentQuantity) {
+    private void decreaseQuantityByOne(Uri uri, Context context, int currentQuantity) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ProductEntry.COLUMN_QUANTITY, currentQuantity - 1);
 
         int row = context.getContentResolver().update(uri, contentValues, null, null);
-
-        return row != 0;
     }
 }

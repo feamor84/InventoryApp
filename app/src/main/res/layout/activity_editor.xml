@@ -86,14 +86,17 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/product_editor_quantity_heading"
         style="@style/ProductEditorHeading"
         android:text="@string/product_editor_quantity_change_heading" />
 
     <LinearLayout
+        android:id="@+id/product_editor_quantity_container"
         style="@style/ProductEditorQuantityContainer">
         <Button
             android:id="@+id/editor_decrease"
             style="@style/ProductEditorQuantityButton"
+            android:onClick="decreaseQuantityByOne"
             android:text="@string/product_editor_quantity_decrease"/>
 
         <TextView
@@ -104,6 +107,7 @@
         <Button
             android:id="@+id/editor_increase"
             style="@style/ProductEditorQuantityButton"
+            android:onClick="increaseQuantityByOne"
             android:text="@string/product_editor_quantity_increase"/>
 
     </LinearLayout>
@@ -115,6 +119,7 @@
     <Button
         android:id="@+id/editor_add_image"
         style="@style/ProductEditorImageButton"
+        android:onClick="takePhoto"
         android:text="@string/product_editor_image_add_button" />
 
     <ImageView
