@@ -76,10 +76,35 @@
     <!-- ProductEditor image description -->
     <string name="product_editor_image_desc">Product image</string>
 
+    <!-- ProductEditor supplier order button -->
+    <string name="product_editor_order_button">Order</string>
+
     <!-- TOASTs validation messages -->
     <!-- ProductCursorAdapter - when user tries to click SELL button when quantity is 0 -->
     <string name="toast_quantity_is_zero">Cannot sell item. It\'s 0 in stock.</string>
 
     <!-- EditorActivity - when user tries to click on "-" button, in edit mode, to decrease quantity when it's 0 -->
     <string name="toast_quantity_is_zero_editor_mode">Quantity in stock cannot be negative. Now it\'s 0.</string>
+
+    <!-- EditorActivity - when user tries to send order to supplier but was error during db query or email is empty -->
+    <string name="toast_order_blank_email">E-mail address cannot be empty.</string>
+
+    <!-- AlertDialog messages -->
+    <!-- AlertDialog body message -->
+    <string name="alert_dialog_message">Do you want to delete this product?</string>
+
+    <!-- AlertDialog confirmation -->
+    <string name="alert_dialog_confirmation">Yes</string>
+
+    <!-- AlertDialog dismiss -->
+    <string name="alert_dialog_dismiss">No</string>
+
+    <!-- AlertDialogBack body message -->
+    <string name="alert_dialog_back_message">You have unsaved changes, do you want to dismiss?</string>
+
+    <!-- AlertDialogBack confirmation -->
+    <string name="alert_dialog_back_confirmation">Yes</string>
+
+    <!-- AlertDialogBack dismiss -->
+    <string name="alert_dialog_back_dismiss">No</string>
 </resources>

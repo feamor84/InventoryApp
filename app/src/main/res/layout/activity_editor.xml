@@ -52,40 +52,6 @@
     </LinearLayout>
 
     <TextView
-        style="@style/ProductEditorHeading"
-        android:text="@string/product_editor_product_supplier_heading" />
-
-    <LinearLayout
-        style="@style/ProductEditorItemContainer">
-
-        <TextView
-            style="@style/ProductEditorItemTextView"
-            android:text="@string/product_editor_supplier_name"/>
-
-        <EditText
-            android:id="@+id/editor_supplier_name"
-            style="@style/ProductEditorItemEditText"
-            android:hint="@string/product_editor_supplier_name_hint"
-            android:inputType="text" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/ProductEditorItemContainer">
-
-        <TextView
-            style="@style/ProductEditorItemTextView"
-            android:text="@string/product_editor_supplier_email"/>
-
-        <EditText
-            android:id="@+id/editor_supplier_email"
-            style="@style/ProductEditorItemEditText"
-            android:hint="@string/product_editor_supplier_email_hint"
-            android:inputType="textEmailAddress" />
-
-    </LinearLayout>
-
-    <TextView
         android:id="@+id/product_editor_quantity_heading"
         style="@style/ProductEditorHeading"
         android:text="@string/product_editor_quantity_change_heading" />
@@ -126,6 +92,44 @@
         android:id="@+id/editor_image_holder"
         style="@style/ProductEditorImageHolder"
         android:contentDescription="@string/product_editor_image_desc" />
+
+    <TextView
+        style="@style/ProductEditorHeading"
+        android:text="@string/product_editor_product_supplier_heading" />
+
+    <LinearLayout style="@style/ProductEditorItemContainer">
+
+        <TextView
+            style="@style/ProductEditorItemTextView"
+            android:text="@string/product_editor_supplier_name" />
+
+        <EditText
+            android:id="@+id/editor_supplier_name"
+            style="@style/ProductEditorItemEditText"
+            android:hint="@string/product_editor_supplier_name_hint"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/ProductEditorItemContainer">
+
+        <TextView
+            style="@style/ProductEditorItemTextView"
+            android:text="@string/product_editor_supplier_email" />
+
+        <EditText
+            android:id="@+id/editor_supplier_email"
+            style="@style/ProductEditorItemEditText"
+            android:hint="@string/product_editor_supplier_email_hint"
+            android:inputType="textEmailAddress" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/editor_supplier_order"
+        style="@style/ProductEditorOrderButton"
+        android:text="@string/product_editor_order_button"
+        android:onClick="sendOrder" />
 
 </LinearLayout>
 

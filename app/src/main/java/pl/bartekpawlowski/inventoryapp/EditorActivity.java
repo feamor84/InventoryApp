@@ -3,6 +3,7 @@ package pl.bartekpawlowski.inventoryapp;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -11,10 +12,12 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +83,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     Uri mItemUri;
     Uri mPhotoUri;
 
+    // Monitor of field change
+    private boolean mHasFieldChange = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +98,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             this.setTitle(R.string.product_editor_edit_mode);
             getLoaderManager().initLoader(LOADER_ID, null, this);
         } else {
+            mImageView.getLayoutParams().height = Math.round(getResources().getDimension(R.dimen.product_editor_no_image));
             invalidateOptionsMenu();
             this.setTitle(R.string.product_editor_add_mode);
 
@@ -99,6 +106,16 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             mQuantityHeader.setVisibility(View.GONE);
             mQuantityContainer.setVisibility(View.GONE);
         }
+
+        // Attach onTouchListener to all fields and Add Image button
+        mProductName.setOnTouchListener(mOnTouchListener);
+        mProductPrice.setOnTouchListener(mOnTouchListener);
+        mProductQty.setOnTouchListener(mOnTouchListener);
+        mAddImage.setOnTouchListener(mOnTouchListener);
+        mSupplierName.setOnTouchListener(mOnTouchListener);
+        mSupplierEmail.setOnTouchListener(mOnTouchListener);
+        mProductIncrease.setOnTouchListener(mOnTouchListener);
+        mProductDecrease.setOnTouchListener(mOnTouchListener);
     }
 
     @Override
@@ -121,13 +138,25 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 }
                 return true;
             case R.id.delete_product:
-                if (deleteProduct()) {
-                    finish();
-                }
+                showDeleteConfirmationDialog();
                 return true;
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                if (!mHasFieldChange) {
+                    NavUtils.navigateUpFromSameTask(this);
+                    return true;
+                }
+
+                DialogInterface.OnClickListener discardButtonClickListener =
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                NavUtils.navigateUpFromSameTask(EditorActivity.this);
+                            }
+                        };
+
+                showUnsavedChangesDialog(discardButtonClickListener);
                 return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -139,6 +168,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         contentValues.put(ProductEntry.COLUMN_QUANTITY, mProductQty.getText().toString());
         contentValues.put(ProductEntry.COLUMN_SUPPLIER_NAME, mSupplierName.getText().toString());
         contentValues.put(ProductEntry.COLUMN_SUPPLIER_EMAIL, mSupplierEmail.getText().toString());
+        contentValues.put(ProductEntry.COLUMN_IMAGE_URI, mPhotoUri.toString());
 
         return contentValues;
     }
@@ -250,11 +280,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
+                mPhotoUri = FileProvider.getUriForFile(this,
                         "pl.bartekpawlowski.inventoryapp.fileprovider",
                         photoFile);
-                Log.i("Photo Uri", photoURI.toString());
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                Log.i("Photo Uri", mPhotoUri.toString());
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoUri);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
@@ -264,8 +294,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        mPhotoUri = data.getData();
-        Log.i(LOG_TAG, mPhotoUri.toString());
+        mImageView.setImageURI(mPhotoUri);
+        mImageView.getLayoutParams().height = Math.round(getResources().getDimension(R.dimen.product_editor_image_height));
     }
 
     private void galleryAddPic() {
@@ -276,6 +306,65 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         this.sendBroadcast(mediaScanIntent);
     }
 
+    public void sendOrder(View view) {
+        String email = getSupplierEmail();
+        String productName = getProductName();
+
+        String subject = "Order product: " + productName;
+        String text = "I want to order product " + productName + ".";
+
+        if (!email.isEmpty()) {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:"));
+            intent.putExtra(Intent.EXTRA_EMAIL, email);
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            intent.putExtra(Intent.EXTRA_TEXT, text);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+
+        } else {
+            Toast.makeText(this, R.string.toast_order_blank_email, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private String getSupplierEmail() {
+        String email = "";
+        String[] projection = new String[]{
+                ProductEntry._ID,
+                ProductEntry.COLUMN_SUPPLIER_EMAIL
+        };
+
+        Cursor cursor = getContentResolver().query(mItemUri, projection, null, null, null);
+        try {
+            if (cursor.moveToFirst()) {
+                email = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_SUPPLIER_EMAIL));
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return email;
+    }
+
+    private String getProductName() {
+        String name = "";
+        String[] projection = new String[]{
+                ProductEntry._ID,
+                ProductEntry.COLUMN_NAME
+        };
+
+        Cursor cursor = getContentResolver().query(mItemUri, projection, null, null, null);
+        try {
+            if (cursor.moveToFirst()) {
+                name = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_NAME));
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return name;
+    }
 
     @Override
     public android.content.Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -290,6 +379,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             int qtyIndex = cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_QUANTITY);
             int supplierNameIndex = cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_SUPPLIER_NAME);
             int supplierEmailIndex = cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_SUPPLIER_EMAIL);
+            int imageIndex = cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_IMAGE_URI);
 
             mProductName.setText(cursor.getString(nameIndex));
             mProductPrice.setText(String.valueOf(cursor.getInt(priceIndex)));
@@ -297,6 +387,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             mSupplierName.setText(cursor.getString(supplierNameIndex));
             mSupplierEmail.setText(cursor.getString(supplierEmailIndex));
             mProductQtyTextView.setText(String.valueOf(cursor.getInt(qtyIndex)));
+            mPhotoUri = Uri.parse(cursor.getString(imageIndex));
+            mImageView.setImageURI(mPhotoUri);
         }
     }
 
@@ -308,5 +400,73 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mSupplierName.setText("");
         mSupplierEmail.setText("");
         mProductQtyTextView.setText("");
+        mImageView.setImageDrawable(null);
+    }
+
+    private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            Log.i(LOG_TAG, String.valueOf(view.getId()));
+            mHasFieldChange = true;
+            return false;
+        }
+    };
+
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.alert_dialog_message);
+        builder.setPositiveButton(R.string.alert_dialog_confirmation, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (deleteProduct()) {
+                    finish();
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.alert_dialog_dismiss, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (dialogInterface != null) {
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showUnsavedChangesDialog(DialogInterface.OnClickListener discardButtonClickListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.alert_dialog_back_message);
+        builder.setPositiveButton(R.string.alert_dialog_back_confirmation, discardButtonClickListener);
+        builder.setNegativeButton(R.string.alert_dialog_back_dismiss, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (dialogInterface != null) {
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!mHasFieldChange) {
+            super.onBackPressed();
+            finish();
+        }
+
+        DialogInterface.OnClickListener discardButtonClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        };
+
+        showUnsavedChangesDialog(discardButtonClickListener);
     }
 }

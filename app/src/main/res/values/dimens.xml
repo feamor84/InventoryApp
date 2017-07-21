@@ -41,4 +41,8 @@
 
     <!-- ProductEditor supplier heading margin bottom -->
     <dimen name="product_editor_supplier_heading_margin_bottom">8dp</dimen>
+
+    <!-- ProductEditor image holder height -->
+    <dimen name="product_editor_no_image">0dp</dimen>
+    <dimen name="product_editor_image_height">300dp</dimen>
 </resources>
