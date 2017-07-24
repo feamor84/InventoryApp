@@ -32,7 +32,7 @@
             android:id="@+id/editor_price"
             style="@style/ProductEditorItemEditText"
             android:hint="@string/product_editor_price_hint"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
     </LinearLayout>
 

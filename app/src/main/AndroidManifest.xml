@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name=".EditorActivity"
-            android:parentActivityName=".CatalogActivity" />
+            android:parentActivityName=".CatalogActivity"
+            android:windowSoftInputMode="stateHidden" />
 
         <provider
             android:name=".data.ProductProvider"

@@ -182,4 +182,45 @@ public class ProductProvider extends ContentProvider {
 
         return type;
     }
+
+    private boolean sanitizeData(ContentValues contentValues) {
+        boolean isValid = true;
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_NAME)) {
+            if (contentValues.getAsString(ProductEntry.COLUMN_NAME).isEmpty()) {
+                isValid = false;
+                throw new IllegalArgumentException("Product name is empty!");
+            }
+        }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_PRICE)) {
+            if (contentValues.getAsFloat(ProductEntry.COLUMN_PRICE) < 0) {
+                isValid = false;
+                throw new IllegalArgumentException("Product price is less than 0");
+            }
+        }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_QUANTITY)) {
+            if (contentValues.getAsInteger(ProductEntry.COLUMN_QUANTITY) < 0) {
+                isValid = false;
+                throw new IllegalArgumentException("Product quantity is less than 0");
+            }
+        }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_SUPPLIER_NAME)) {
+            if (contentValues.getAsString(ProductEntry.COLUMN_SUPPLIER_NAME).isEmpty()) {
+                isValid = false;
+                throw new IllegalArgumentException("Supplier name is empty!");
+            }
+        }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_SUPPLIER_EMAIL)) {
+            if (contentValues.getAsString(ProductEntry.COLUMN_SUPPLIER_EMAIL).isEmpty()) {
+                isValid = false;
+                throw new IllegalArgumentException("Supplier email address is empty!");
+            }
+        }
+
+        return isValid;
+    }
 }

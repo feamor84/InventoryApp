@@ -15,6 +15,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -175,15 +176,17 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     private boolean saveProduct(ContentValues contentValues) {
 
-        if (mItemUri != null) {
-            int rowsNumber = getContentResolver().update(mItemUri, contentValues, null, null);
-            if (rowsNumber != 0) {
-                return true;
-            }
-        } else {
-            Uri uri = getContentResolver().insert(ProductEntry.CONTENT_PATH, contentValues);
-            if (uri != null) {
-                return true;
+        if (fieldsValidation()) {
+            if (mItemUri != null) {
+                int rowsNumber = getContentResolver().update(mItemUri, contentValues, null, null);
+                if (rowsNumber != 0) {
+                    return true;
+                }
+            } else {
+                Uri uri = getContentResolver().insert(ProductEntry.CONTENT_PATH, contentValues);
+                if (uri != null) {
+                    return true;
+                }
             }
         }
 
@@ -476,5 +479,56 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         };
 
         showUnsavedChangesDialog(discardButtonClickListener);
+    }
+
+    private boolean fieldsValidation() {
+        boolean isValid = true;
+        String msg = "";
+
+        if (mProductName.getText().toString().isEmpty()) {
+            isValid = false;
+            msg += "Product name cannot be empty!\n";
+        }
+
+        if (mProductPrice.getText().toString().isEmpty()) {
+            isValid = false;
+            msg += "Product price cannot be empty!\n";
+        } else {
+            if (Float.parseFloat(mProductPrice.getText().toString()) < 0) {
+                isValid = false;
+                msg += "Product price cannot be less than 0!\n";
+            }
+        }
+
+        if (mProductQty.getText().toString().isEmpty()) {
+            isValid = false;
+            msg += "Product quantity cannot be empty!\n";
+        } else {
+            if (Integer.parseInt(mProductQty.getText().toString()) < 0) {
+                isValid = false;
+                msg += "Product quantity cannot be lass than 0!\n";
+            }
+        }
+
+        if (mSupplierName.getText().toString().isEmpty()) {
+            isValid = false;
+            msg += "Supplier name cannot be empty!\n";
+        }
+
+        if (mSupplierEmail.getText().toString().isEmpty()) {
+            isValid = false;
+            msg += "Supplier e-mail address cannot be empty!\n";
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(mSupplierEmail.getText().toString()).matches() && !mSupplierName.getText().toString().isEmpty()) {
+            isValid = false;
+            msg += "Supplier e-mail address is not valid!";
+        }
+
+        if (!isValid) {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
+
+        return isValid;
     }
 }

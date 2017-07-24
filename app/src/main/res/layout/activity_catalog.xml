@@ -4,13 +4,6 @@
     style="@style/CatalogLayoutContainer"
     tools:context="pl.bartekpawlowski.inventoryapp.CatalogActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        style="@style/Fab"
-        android:onClick="onFabClick"
-        android:src="@drawable/ic_add_white_18dp"
-        />
-
     <ListView
         android:id="@+id/catalog_list"
         style="@style/CatalogLayoutList" />
@@ -34,5 +27,11 @@
             android:text="@string/empty_list_text"/>
 
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Fab"
+        android:onClick="onFabClick"
+        android:src="@drawable/ic_add_white_18dp" />
 
 </RelativeLayout>
