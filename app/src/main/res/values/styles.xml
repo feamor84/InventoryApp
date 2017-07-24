@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -58,7 +58,7 @@
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_margin">@dimen/fab_margin</item>
-        <item name="android:focusable">true</item>
+        <item name="android:focusable">false</item>
     </style>
 
     <!-- ListItem container -->
@@ -67,6 +67,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:padding">@dimen/list_item_container_padding</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
     </style>
 
     <!-- ListItem name & price container -->
@@ -112,6 +113,7 @@
     <!-- ListItem sale button -->
     <style name="ListItemQtyAndSale.Sale">
         <item name="android:focusable">false</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
     <!-- ProductEditor ScrollView -->
@@ -191,7 +193,7 @@
     <!-- ProductEditor image holder -->
     <style name="ProductEditorImageHolder">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/product_editor_image_height</item>
+        <item name="android:layout_height">@dimen/product_editor_no_image</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 

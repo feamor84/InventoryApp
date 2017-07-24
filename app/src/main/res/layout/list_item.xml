@@ -24,9 +24,10 @@
         tools:text="6 pcs"
         />
 
-    <Button
+    <ImageButton
         android:id="@+id/list_product_sale_button"
         style="@style/ListItemQtyAndSale.Sale"
-        android:text="@string/sale_button"/>
+        android:src="@drawable/ic_shopping_basket"
+        android:contentDescription="@string/sale_button"/>
 
 </LinearLayout>

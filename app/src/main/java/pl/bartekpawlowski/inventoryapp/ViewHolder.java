@@ -2,6 +2,7 @@ package pl.bartekpawlowski.inventoryapp;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -24,7 +25,7 @@ public class ViewHolder {
     TextView mProductQty;
 
     @BindView(R.id.list_product_sale_button)
-    Button mProductSaleButton;
+    ImageButton mProductSaleButton;
 
     public ViewHolder(View view) {
         ButterKnife.bind(this, view);

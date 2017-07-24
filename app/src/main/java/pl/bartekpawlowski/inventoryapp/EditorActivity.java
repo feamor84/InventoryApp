@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,6 +33,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,6 +120,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mSupplierEmail.setOnTouchListener(mOnTouchListener);
         mProductIncrease.setOnTouchListener(mOnTouchListener);
         mProductDecrease.setOnTouchListener(mOnTouchListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.revokeUriPermission(mPhotoUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
     }
 
     @Override
@@ -289,6 +298,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                         photoFile);
                 Log.i("Photo Uri", mPhotoUri.toString());
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoUri);
+
+                // Grant permission to read from URI
+                List<ResolveInfo> resInfoList = this.getPackageManager().queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
+                for (ResolveInfo resolveInfo : resInfoList) {
+                    String packageName = resolveInfo.activityInfo.packageName;
+                    this.grantUriPermission(packageName, mPhotoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                }
+
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
@@ -297,10 +314,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-//        Bundle uri = data.getExtras();
-//        String u = uri.getString(MediaStore.EXTRA_OUTPUT);
-//        Log.i("u", u);
 
         if (requestCode == REQUEST_TAKE_PHOTO) {
             mImageView.setImageURI(mPhotoUri);
@@ -398,7 +411,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             mSupplierEmail.setText(cursor.getString(supplierEmailIndex));
             mProductQtyTextView.setText(String.valueOf(cursor.getInt(qtyIndex)));
             mPhotoUri = Uri.parse(cursor.getString(imageIndex));
-            if (!mPhotoUri.equals(Uri.EMPTY)) {
+            if (!mPhotoUri.toString().equals(Uri.EMPTY.toString())) {
+                mImageView.getLayoutParams().height = Math.round(getResources().getDimension(R.dimen.product_editor_image_height));
                 mImageView.setImageURI(mPhotoUri);
             }
         }
@@ -508,6 +522,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 isValid = false;
                 msg += "Product quantity cannot be lass than 0!\n";
             }
+        }
+
+        if(mPhotoUri.equals(Uri.EMPTY)) {
+            isValid = false;
+            msg += "Product image is empty! Please take a photo of product.\n";
         }
 
         if (mSupplierName.getText().toString().isEmpty()) {

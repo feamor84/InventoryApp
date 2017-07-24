@@ -22,8 +22,8 @@
     <!-- EmptyListText -->
     <string name="empty_list_text">No product on the list! \nPlease click button on bottom right to add a new product.</string>
 
-    <!-- List item SALE button -->
-    <string name="sale_button">sale</string>
+    <!-- List item SALE button description -->
+    <string name="sale_button">Sale</string>
 
     <!-- ProductEditor product name -->
     <string name="product_editor_name">Name</string>
