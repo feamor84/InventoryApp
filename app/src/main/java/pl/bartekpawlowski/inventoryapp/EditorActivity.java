@@ -303,7 +303,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 //        Log.i("u", u);
 
         if (requestCode == REQUEST_TAKE_PHOTO) {
-            mImageView.setImageURI(mItemUri);
+            mImageView.setImageURI(mPhotoUri);
             mImageView.getLayoutParams().height = Math.round(getResources().getDimension(R.dimen.product_editor_image_height));
         }
     }

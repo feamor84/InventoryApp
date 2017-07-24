@@ -74,14 +74,21 @@ public class ProductProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
-        final int match = sUriMatcher.match(uri);
-        switch (match) {
-            case PRODUCTS:
-                getContext().getContentResolver().notifyChange(uri, null);
-                return insertProduct(uri, contentValues);
-            default:
-                throw new IllegalArgumentException("Wrong Uri in INSERT with: " + uri);
+        Uri itemUri = Uri.EMPTY;
+
+        if (sanitizeData(contentValues)) {
+            final int match = sUriMatcher.match(uri);
+            switch (match) {
+                case PRODUCTS:
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    itemUri = insertProduct(uri, contentValues);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Wrong Uri in INSERT with: " + uri);
+            }
         }
+
+        return itemUri;
     }
 
     /**
