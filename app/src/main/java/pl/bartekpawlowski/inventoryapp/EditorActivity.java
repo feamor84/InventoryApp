@@ -80,8 +80,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     @BindView(R.id.editor_image_holder)
     ImageView mImageView;
 
-    Uri mItemUri;
-    Uri mPhotoUri;
+    private Uri mItemUri;
+    private Uri mPhotoUri = Uri.EMPTY;
 
     // Monitor of field change
     private boolean mHasFieldChange = false;
@@ -264,6 +264,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
+        Log.i("ABS photo path", mCurrentPhotoPath);
         return image;
     }
 
@@ -294,8 +295,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        mImageView.setImageURI(mPhotoUri);
-        mImageView.getLayoutParams().height = Math.round(getResources().getDimension(R.dimen.product_editor_image_height));
+//        Bundle uri = data.getExtras();
+//        String u = uri.getString(MediaStore.EXTRA_OUTPUT);
+//        Log.i("u", u);
+
+        if (requestCode == REQUEST_TAKE_PHOTO) {
+            mImageView.setImageURI(mItemUri);
+            mImageView.getLayoutParams().height = Math.round(getResources().getDimension(R.dimen.product_editor_image_height));
+        }
     }
 
     private void galleryAddPic() {
@@ -307,13 +314,13 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     public void sendOrder(View view) {
-        String email = getSupplierEmail();
+        String[] email = new String[]{getSupplierEmail()};
         String productName = getProductName();
 
         String subject = "Order product: " + productName;
         String text = "I want to order product " + productName + ".";
 
-        if (!email.isEmpty()) {
+        if (email.length > 0) {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("mailto:"));
             intent.putExtra(Intent.EXTRA_EMAIL, email);
@@ -388,7 +395,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             mSupplierEmail.setText(cursor.getString(supplierEmailIndex));
             mProductQtyTextView.setText(String.valueOf(cursor.getInt(qtyIndex)));
             mPhotoUri = Uri.parse(cursor.getString(imageIndex));
-            mImageView.setImageURI(mPhotoUri);
+            if (!mPhotoUri.equals(Uri.EMPTY)) {
+                mImageView.setImageURI(mPhotoUri);
+            }
         }
     }
 
@@ -406,7 +415,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
-            Log.i(LOG_TAG, String.valueOf(view.getId()));
             mHasFieldChange = true;
             return false;
         }
