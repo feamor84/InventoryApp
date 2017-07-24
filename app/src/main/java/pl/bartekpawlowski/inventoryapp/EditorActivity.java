@@ -22,8 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -73,14 +73,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     @BindView(R.id.product_editor_quantity_container)
     LinearLayout mQuantityContainer;
     @BindView(R.id.editor_decrease)
-    Button mProductDecrease;
+    ImageButton mProductDecrease;
     @BindView(R.id.editor_increase)
-    Button mProductIncrease;
+    ImageButton mProductIncrease;
     @BindView(R.id.editor_qty_text_view)
     TextView mProductQtyTextView;
 
     @BindView(R.id.editor_add_image)
-    Button mAddImage;
+    ImageButton mAddImage;
     @BindView(R.id.editor_image_holder)
     ImageView mImageView;
 

@@ -6,4 +6,19 @@
 
     <!-- EmptyList Image credits -->
     <color name="empty_list_image_credits">#E0E0E0</color>
+
+    <!-- Default background -->
+    <color name="default_background">#EFEBE9</color>
+
+    <!-- ListItem quantity background -->
+    <color name="list_item_quantity_background">#FF7043</color>
+
+    <!-- ListItem quantity text color -->
+    <color name="list_item_quantity_text_color">#FAFAFA</color>
+
+    <!-- ProductEditor hint color -->
+    <color name="product_editor_hint_text_color">#BF360C</color>
+
+    <!-- ProductEditor heading color -->
+    <color name="product_editor_heading_text_color">#3E2723</color>
 </resources>

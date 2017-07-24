@@ -30,6 +30,18 @@
     <!-- ListItem space between name and price -->
     <dimen name="list_item_space">8dp</dimen>
 
+    <!-- ListItem width and height of quantity TextView and sale ImageButton -->
+    <dimen name="list_item_width_and_height">48dp</dimen>
+
+    <!-- ListItem quantity text size -->
+    <dimen name="list_item_quantity_text_size">20sp</dimen>
+
+    <!-- ProductEditor body text size -->
+    <dimen name="product_editor_body_text_size">16sp</dimen>
+
+    <!-- ProductEditor heading text size -->
+    <dimen name="product_editor_heading_text_size">18sp</dimen>
+
     <!-- ProductEditor container padding -->
     <dimen name="product_editor_container_padding">16dp</dimen>
 
@@ -41,6 +53,12 @@
 
     <!-- ProductEditor supplier heading margin bottom -->
     <dimen name="product_editor_supplier_heading_margin_bottom">8dp</dimen>
+
+    <!-- ProductEditor AddImage button width and height -->
+    <dimen name="product_editor_button">48dp</dimen>
+
+    <!-- ProductEditor quantity text size -->
+    <dimen name="product_editor_quantity_text_size">24sp</dimen>
 
     <!-- ProductEditor image holder height -->
     <dimen name="product_editor_no_image">0dp</dimen>

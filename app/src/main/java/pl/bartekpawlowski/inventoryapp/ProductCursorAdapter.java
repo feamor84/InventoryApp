@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+
 import pl.bartekpawlowski.inventoryapp.data.ProductContract.ProductEntry;
 
 /**
@@ -37,8 +39,10 @@ public class ProductCursorAdapter extends CursorAdapter {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
         final long itemId = cursor.getInt(cursor.getColumnIndexOrThrow(ProductEntry._ID));
 
+        float price = cursor.getFloat(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_PRICE));
+
         viewHolder.mProductName.setText(cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_NAME)));
-        viewHolder.mProductPrice.setText(cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_PRICE)));
+        viewHolder.mProductPrice.setText(NumberFormat.getCurrencyInstance().format(price));
         viewHolder.mProductQty.setText(cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_QUANTITY)));
 
         viewHolder.mProductSaleButton.setOnClickListener(new View.OnClickListener() {

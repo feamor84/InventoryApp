@@ -12,6 +12,7 @@
     <style name="CatalogLayoutContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/default_background</item>
     </style>
 
     <style name="CatalogLayoutList">
@@ -65,17 +66,16 @@
     <style name="ListItemContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">horizontal</item>
         <item name="android:padding">@dimen/list_item_container_padding</item>
         <item name="android:descendantFocusability">blocksDescendants</item>
+        <item name="android:background">@color/default_background</item>
     </style>
 
     <!-- ListItem name & price container -->
     <style name="ListItemNameAndPriceContainer">
-        <item name="android:layout_width">@dimen/_0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:layout_weight">2</item>
     </style>
 
     <style name="ListItemNameAndPrice">
@@ -99,19 +99,22 @@
 
     <!-- ListItem quantity and SALE button -->
     <style name="ListItemQtyAndSale">
-        <item name="android:layout_width">@dimen/_0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">@dimen/list_item_width_and_height</item>
+        <item name="android:layout_height">@dimen/list_item_width_and_height</item>
         <item name="android:gravity">center</item>
     </style>
 
     <!-- ListItem quantity -->
     <style name="ListItemQtyAndSale.Quantity">
-
+        <item name="android:layout_toLeftOf">@id/list_product_sale_button</item>
+        <item name="android:textColor">@color/list_item_quantity_text_color</item>
+        <item name="android:textSize">@dimen/list_item_quantity_text_size</item>
+        <item name="android:background">@color/list_item_quantity_background</item>
     </style>
 
     <!-- ListItem sale button -->
     <style name="ListItemQtyAndSale.Sale">
+        <item name="android:layout_alignParentRight">true</item>
         <item name="android:focusable">false</item>
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
@@ -120,6 +123,7 @@
     <style name="ProductEditorScrollView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/default_background</item>
     </style>
 
     <!-- ProductEditor container -->
@@ -142,12 +146,15 @@
         <item name="android:layout_width">@dimen/_0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/product_editor_body_text_size</item>
     </style>
 
     <style name="ProductEditorItemEditText">
         <item name="android:layout_width">@dimen/_0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">2</item>
+        <item name="android:textSize">@dimen/product_editor_body_text_size</item>
+        <item name="android:textColorHint">@color/product_editor_hint_text_color</item>
     </style>
 
     <!-- ProductEditor heading -->
@@ -156,6 +163,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/product_editor_supplier_heading_margin_top</item>
         <item name="android:layout_marginBottom">@dimen/product_editor_supplier_heading_margin_bottom</item>
+        <item name="android:textColor">@color/product_editor_heading_text_color</item>
+        <item name="android:textSize">@dimen/product_editor_heading_text_size</item>
     </style>
 
     <!-- ProductEditor -->
@@ -174,26 +183,47 @@
 
     <!-- ProductEditor quantity buttons -->
     <style name="ProductEditorQuantityButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">@dimen/product_editor_button</item>
+        <item name="android:layout_height">@dimen/product_editor_button</item>
+        <item name="android:layout_marginLeft">@dimen/product_editor_container_padding</item>
+        <item name="android:layout_marginRight">@dimen/product_editor_container_padding</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
     <!-- ProductEditor quantity text -->
     <style name="ProductEditorQuantityText">
         <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/product_editor_quantity_text_size</item>
+    </style>
+
+    <!-- ProductEditor text plus ImageButton container -->
+    <style name="ProductEditorTextAndImageButtonContainer">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <!-- ProductEditor image add -->
-    <style name="ProductEditorImageButton">
+    <!-- ProductEditor image add text -->
+    <style name="ProductEditorButtonText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!-- ProductEditor image add -->
+    <style name="ProductEditorButton">
+        <item name="android:layout_width">@dimen/product_editor_button</item>
+        <item name="android:layout_height">@dimen/product_editor_button</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:layout_alignParentRight">true</item>
     </style>
 
     <!-- ProductEditor image holder -->
     <style name="ProductEditorImageHolder">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/product_editor_no_image</item>
+        <item name="android:layout_marginTop">@dimen/product_editor_container_padding</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 

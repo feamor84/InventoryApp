@@ -25,6 +25,9 @@
     <!-- List item SALE button description -->
     <string name="sale_button">Sale</string>
 
+    <!-- ProductEditor main heading -->
+    <string name="product_editor_main_heading">Basic product information</string>
+
     <!-- ProductEditor product name -->
     <string name="product_editor_name">Name</string>
 
@@ -62,21 +65,27 @@
     <string name="product_editor_quantity_change_heading">Change quantity of product in stock</string>
 
     <!-- ProductEditor quantity increase -->
-    <string name="product_editor_quantity_increase">+</string>
+    <string name="product_editor_quantity_increase">Increase quantity</string>
 
     <!-- ProductEditor quantity decrease -->
-    <string name="product_editor_quantity_decrease">-</string>
+    <string name="product_editor_quantity_decrease">Decrease quantity</string>
 
     <!-- ProductEditor image of product heading -->
     <string name="product_editor_image_heading">Product image</string>
 
-    <!-- ProductEditor image add button -->
+    <!-- ProductEditor image add text -->
+    <string name="product_editor_image_add_text">Press button to add image</string>
+
+    <!-- ProductEditor image add button description-->
     <string name="product_editor_image_add_button">Add image</string>
 
     <!-- ProductEditor image description -->
     <string name="product_editor_image_desc">Product image</string>
 
-    <!-- ProductEditor supplier order button -->
+    <!-- ProductEditor supplier order text -->
+    <string name="product_editor_order_text">Press button to make an order</string>
+
+    <!-- ProductEditor supplier order button description -->
     <string name="product_editor_order_button">Order</string>
 
     <!-- TOASTs validation messages -->
