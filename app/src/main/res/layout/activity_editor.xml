@@ -138,7 +138,9 @@
 
         </LinearLayout>
 
-        <RelativeLayout style="@style/ProductEditorTextAndImageButtonContainer">
+        <RelativeLayout
+            android:id="@+id/editor_supplier_order_container"
+            style="@style/ProductEditorTextAndImageButtonContainer">
 
             <TextView
                 style="@style/ProductEditorButtonText"

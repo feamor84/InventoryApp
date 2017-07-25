@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,11 +85,21 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     @BindView(R.id.editor_image_holder)
     ImageView mImageView;
 
+    @BindView(R.id.editor_supplier_order_container)
+    RelativeLayout mSupplierOrderContainer;
+
     private Uri mItemUri;
     private Uri mPhotoUri = Uri.EMPTY;
 
     // Monitor of field change
     private boolean mHasFieldChange = false;
+    private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            mHasFieldChange = true;
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +116,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             mImageView.getLayoutParams().height = Math.round(getResources().getDimension(R.dimen.product_editor_no_image));
             invalidateOptionsMenu();
             this.setTitle(R.string.product_editor_add_mode);
+            mSupplierOrderContainer.setVisibility(View.GONE);
 
             // Hide increase and decrease button when editor is in add mode
             mQuantityHeader.setVisibility(View.GONE);
@@ -428,14 +440,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mProductQtyTextView.setText("");
         mImageView.setImageDrawable(null);
     }
-
-    private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            mHasFieldChange = true;
-            return false;
-        }
-    };
 
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
