@@ -364,41 +364,30 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     private String getSupplierEmail() {
-        String email = "";
-        String[] projection = new String[]{
-                ProductEntry._ID,
-                ProductEntry.COLUMN_SUPPLIER_EMAIL
-        };
-
-        Cursor cursor = getContentResolver().query(mItemUri, projection, null, null, null);
-        try {
-            if (cursor.moveToFirst()) {
-                email = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_SUPPLIER_EMAIL));
-            }
-        } finally {
-            cursor.close();
-        }
-
-        return email;
+        return getStringFromDatabase(ProductEntry.COLUMN_SUPPLIER_EMAIL);
     }
 
     private String getProductName() {
-        String name = "";
+        return getStringFromDatabase(ProductEntry.COLUMN_NAME);
+    }
+
+    private String getStringFromDatabase(String columnName) {
+        String string = "";
         String[] projection = new String[]{
                 ProductEntry._ID,
-                ProductEntry.COLUMN_NAME
+                columnName
         };
 
         Cursor cursor = getContentResolver().query(mItemUri, projection, null, null, null);
         try {
             if (cursor.moveToFirst()) {
-                name = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_NAME));
+                string = cursor.getString(cursor.getColumnIndexOrThrow(columnName));
             }
         } finally {
             cursor.close();
         }
 
-        return name;
+        return string;
     }
 
     @Override
