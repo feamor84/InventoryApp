@@ -441,14 +441,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 }
             }
         });
-        builder.setNegativeButton(R.string.alert_dialog_dismiss, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (dialogInterface != null) {
-                    dialogInterface.dismiss();
-                }
-            }
-        });
+        builder.setNegativeButton(R.string.alert_dialog_dismiss, null);
 
         AlertDialog dialog = builder.create();
         dialog.show();
